@@ -1,0 +1,179 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  color: var(--text-primary);
+  background-color: var(--background-color);
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--primary-hover);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.mb-sm {
+  margin-bottom: var(--spacing-sm);
+}
+
+.mb-md {
+  margin-bottom: var(--spacing-md);
+}
+
+.mb-lg {
+  margin-bottom: var(--spacing-lg);
+}
+
+.mt-sm {
+  margin-top: var(--spacing-sm);
+}
+
+.mt-md {
+  margin-top: var(--spacing-md);
+}
+
+.mt-lg {
+  margin-top: var(--spacing-lg);
+}
+
+.p-md {
+  padding: var(--spacing-md);
+}
+
+.p-lg {
+  padding: var(--spacing-lg);
+}
+
+/* Accessibility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Responsive utilities */
+@media (max-width: 768px) {
+  .hide-sm {
+    display: none;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .hide-md {
+    display: none;
+  }
+}
+
+@media (min-width: 1025px) {
+  .hide-lg {
+    display: none;
+  }
+}
+
+/* Map Page Styles */
+.map-page {
+  padding: 24px !important;
+  height: 100vh !important;
+  background: #f5f7fa !important;
+  overflow: hidden !important;
+}
+
+.map-page .ant-typography {
+  color: #1f2937 !important;
+  font-weight: 600 !important;
+}
+
+.map-controls {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  margin-bottom: 16px !important;
+  padding: 16px !important;
+  background: white !important;
+  border-radius: 8px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
+  flex-wrap: wrap !important;
+  gap: 16px !important;
+}
+
+.map-controls-left {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  flex-wrap: wrap !important;
+}
+
+.map-controls-right {
+  display: flex !important;
+  align-items: center !important;
+  background: #f8fafc !important;
+  padding: 8px 16px !important;
+  border-radius: 6px !important;
+  border: 1px solid #e2e8f0 !important;
+  font-size: 14px !important;
+}
+
+.selected-outlet-label {
+  color: #64748b !important;
+  margin-right: 8px !important;
+}
+
+.selected-outlet-value {
+  color: #1890ff !important;
+  font-weight: 600 !important;
+}
+
+.map-container {
+  height: calc(100vh - 220px) !important;
+  min-height: 500px !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12) !important;
+  background: white !important;
+}
+
+.map-container .ant-card-body {
+  padding: 0 !important;
+  height: 100% !important;
+}
+
+.google-map-container {
+  height: 100% !important;
+  width: 100% !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+}
+
+.google-map-container > div {
+  border-radius: 12px !important;
+}
+

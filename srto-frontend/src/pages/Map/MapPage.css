@@ -1,0 +1,106 @@
+.map-page {
+  padding: 24px !important;
+  height: 100vh !important;
+  background: #f5f7fa !important;
+  overflow: hidden !important;
+}
+
+.map-page .ant-typography {
+  color: #1f2937 !important;
+  font-weight: 600 !important;
+}
+
+.map-controls {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  margin-bottom: 16px !important;
+  padding: 16px !important;
+  background: white !important;
+  border-radius: 8px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
+  flex-wrap: wrap !important;
+  gap: 16px !important;
+}
+
+.map-controls-left {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  flex-wrap: wrap !important;
+}
+
+.map-controls-right {
+  display: flex !important;
+  align-items: center !important;
+  background: #f8fafc !important;
+  padding: 8px 16px !important;
+  border-radius: 6px !important;
+  border: 1px solid #e2e8f0 !important;
+  font-size: 14px !important;
+}
+
+.selected-outlet-label {
+  color: #64748b !important;
+  margin-right: 8px !important;
+}
+
+.selected-outlet-value {
+  color: #1890ff !important;
+  font-weight: 600 !important;
+}
+
+.map-container {
+  height: calc(100vh - 220px) !important;
+  min-height: 500px !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12) !important;
+  background: white !important;
+}
+
+.google-map-container {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .map-page {
+    padding: 16px;
+  }
+  
+  .map-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .map-controls-left {
+    justify-content: center;
+  }
+  
+  .map-controls-right {
+    justify-content: center;
+  }
+  
+  .map-container {
+    height: calc(100vh - 280px);
+    min-height: 400px;
+  }
+}
+
+@media (max-width: 480px) {
+  .map-page {
+    padding: 12px;
+  }
+  
+  .map-controls-left {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .map-controls-left .ant-select,
+  .map-controls-left .ant-btn {
+    width: 100%;
+  }
+}

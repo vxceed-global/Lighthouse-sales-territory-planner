@@ -1,0 +1,86 @@
+
+/* Ant Design component overrides */
+
+/* Card styles */
+.ant-card {
+  border-radius: var(--border-radius-base);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s ease;
+}
+
+.ant-card:hover {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Button styles */
+.ant-btn {
+  border-radius: var(--border-radius-base);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ant-btn-primary {
+  background-color: var(--primary-color);
+}
+
+.ant-btn-primary:hover {
+  background-color: var(--primary-hover);
+}
+
+/* Table styles */
+.ant-table {
+  border-radius: var(--border-radius-base);
+}
+
+.ant-table-thead > tr > th {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+/* Form styles */
+.ant-form-item-label > label {
+  font-weight: 500;
+}
+
+/* Menu styles */
+.ant-menu-item-selected {
+  background-color: rgba(124, 0, 239, 0.1) !important;
+}
+
+/* Modal styles */
+.ant-modal-content {
+  border-radius: var(--border-radius-base);
+}
+
+.ant-modal-header {
+  border-radius: var(--border-radius-base) var(--border-radius-base) 0 0;
+}
+
+/* Tabs styles */
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: var(--primary-color);
+}
+
+.ant-tabs-ink-bar {
+  background-color: var(--primary-color);
+}
+
+/* Notification styles */
+.ant-notification-notice {
+  border-radius: var(--border-radius-base);
+}
+
+/* Tooltip styles */
+.ant-tooltip-inner {
+  border-radius: var(--border-radius-sm);
+}
+
+/* Pagination styles */
+.ant-pagination-item-active {
+  border-color: var(--primary-color);
+}
+
+.ant-pagination-item-active a {
+  color: var(--primary-color);
+}
+

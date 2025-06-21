@@ -1,0 +1,42 @@
+#root {
+  /* Remove the max-width constraint */
+  /* max-width: 1280px; */
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  min-height: 300px;
+}
+
+.page-container {
+  padding: 24px;
+}
+
+.page-header {
+  margin-bottom: 24px;
+}
+
+.map-container {
+  width: 100%;
+  height: 600px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .page-container {
+    padding: 16px;
+  }
+  
+  .map-container {
+    height: 400px;
+  }
+}
