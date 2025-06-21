@@ -20,6 +20,7 @@ import {
   EditOutlined,
   ReloadOutlined,
   MoreOutlined,
+  ImportOutlined,
 } from '@ant-design/icons';
 import { ColumnsType } from 'antd/es/table';
 import { useAppSelector, useAppDispatch } from '../../../hooks';
@@ -29,7 +30,7 @@ import {
   useAssignOutletsToTerritoryMutation,
   selectOutletFilters,
   selectSelectedOutletIds,
-  selectOutletViewMode,
+
   selectBulkOperationState,
   setFilters,
   selectMultipleOutlets,
@@ -39,6 +40,9 @@ import {
 } from '../../../store';
 import type { Outlet, OutletFilters } from '../../../types';
 import { getErrorMessage, logError } from '../../../utils/errorHandling';
+import OutletForm from '../OutletForm/OutletForm';
+import ImportWizard from '../ImportWizard/ImportWizard';
+import TerritoryAssignment from '../TerritoryAssignment/TerritoryAssignment';
 
 const { Search } = Input;
 const { Option } = Select;
@@ -64,6 +68,9 @@ export const OutletList: React.FC<OutletListProps> = ({
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(50);
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
+  const [createModalVisible, setCreateModalVisible] = useState(false);
+  const [importWizardVisible, setImportWizardVisible] = useState(false);
+  const [territoryAssignmentVisible, setTerritoryAssignmentVisible] = useState(false);
 
   // Redux state
   const filters = useAppSelector(selectOutletFilters);
@@ -298,29 +305,37 @@ export const OutletList: React.FC<OutletListProps> = ({
     },
   ];
 
+  // Get selected outlets for territory assignment
+  const selectedOutlets = useMemo(() => {
+    return outlets.filter(outlet => selectedOutletIds.includes(outlet.id));
+  }, [outlets, selectedOutletIds]);
+
   // Bulk action menu items
   const bulkActionItems: MenuProps['items'] = [
     {
-      key: 'delete',
-      label: 'Delete Selected',
-      danger: true,
-      onClick: () => setDeleteModalVisible(true),
+      key: 'assign',
+      label: 'Assign to Territory',
+      icon: <MoreOutlined />,
+      onClick: () => setTerritoryAssignmentVisible(true),
       disabled: selectedOutletIds.length === 0,
     },
     {
-      key: 'assign',
-      label: 'Assign to Territory',
-      onClick: () => {
-        // Open territory selection modal
-      },
-      disabled: selectedOutletIds.length === 0,
+      type: 'divider',
     },
     {
       key: 'export',
       label: 'Export Selected',
       onClick: () => {
         // Export selected outlets
+        message.info('Export functionality will be implemented');
       },
+      disabled: selectedOutletIds.length === 0,
+    },
+    {
+      key: 'delete',
+      label: 'Delete Selected',
+      danger: true,
+      onClick: () => setDeleteModalVisible(true),
       disabled: selectedOutletIds.length === 0,
     },
   ];
@@ -421,11 +436,15 @@ export const OutletList: React.FC<OutletListProps> = ({
               <Button
                 type="primary"
                 icon={<PlusOutlined />}
-                onClick={() => {
-                  // Open create outlet modal
-                }}
+                onClick={() => setCreateModalVisible(true)}
               >
                 Add Outlet
+              </Button>
+              <Button
+                icon={<ImportOutlined />}
+                onClick={() => setImportWizardVisible(true)}
+              >
+                Import
               </Button>
               <Dropdown
                 menu={{ items: bulkActionItems }}
@@ -464,6 +483,50 @@ export const OutletList: React.FC<OutletListProps> = ({
           size="small"
         />
       </Spin>
+
+      {/* Create Outlet Modal */}
+      <Modal
+        title="Create New Outlet"
+        open={createModalVisible}
+        onCancel={() => setCreateModalVisible(false)}
+        footer={null}
+        width={800}
+        destroyOnClose
+      >
+        <OutletForm
+          mode="create"
+          territoryId={territoryId}
+          onSuccess={() => {
+            setCreateModalVisible(false);
+            refetch();
+          }}
+          onCancel={() => setCreateModalVisible(false)}
+        />
+      </Modal>
+
+      {/* Import Wizard */}
+      <ImportWizard
+        visible={importWizardVisible}
+        onClose={() => setImportWizardVisible(false)}
+        territoryId={territoryId}
+        onSuccess={(importedCount) => {
+          setImportWizardVisible(false);
+          refetch();
+          message.success(`Successfully imported ${importedCount} outlets`);
+        }}
+      />
+
+      {/* Territory Assignment */}
+      <TerritoryAssignment
+        visible={territoryAssignmentVisible}
+        onClose={() => setTerritoryAssignmentVisible(false)}
+        selectedOutlets={selectedOutlets}
+        onSuccess={() => {
+          setTerritoryAssignmentVisible(false);
+          dispatch(clearSelection());
+          refetch();
+        }}
+      />
 
       {/* Delete Confirmation Modal */}
       <Modal

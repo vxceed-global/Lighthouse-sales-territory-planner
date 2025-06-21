@@ -35,7 +35,16 @@ export {
   selectSelectedOutletCount,
   selectCanPerformBulkOperations,
 } from './slices/outletsSlice';
-export * from './slices/routesSlice';
-export * from './slices/territoriesSlice';
-export * from './slices/optimizationSlice';
-export * from './slices/uiSlice';
+// Export other slices without conflicts
+export {
+  default as routesReducer,
+} from './slices/routesSlice';
+export {
+  default as territoriesReducer,
+} from './slices/territoriesSlice';
+export {
+  default as optimizationReducer,
+} from './slices/optimizationSlice';
+export {
+  default as uiReducer,
+} from './slices/uiSlice';
