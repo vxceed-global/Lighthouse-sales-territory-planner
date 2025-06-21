@@ -2,6 +2,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import { srtoApi } from './api/srtoApi';
+import authReducer from './slices/authSlice';
 import outletsReducer from './slices/outletsSlice';
 import routesReducer from './slices/routesSlice';
 import territoriesReducer from './slices/territoriesSlice';
@@ -10,6 +11,7 @@ import uiReducer from './slices/uiSlice';
 
 export const store = configureStore({
   reducer: {
+    auth: authReducer,
     outlets: outletsReducer,
     routes: routesReducer,
     territories: territoriesReducer,
@@ -18,7 +20,11 @@ export const store = configureStore({
     [srtoApi.reducerPath]: srtoApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(srtoApi.middleware),
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: ['persist/PERSIST', 'persist/REHYDRATE'],
+      },
+    }).concat(srtoApi.middleware),
 });
 
 // Enable refetchOnFocus/refetchOnReconnect behaviors
